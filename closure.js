@@ -1,18 +1,27 @@
 "use strict";
 
 // Closure example
-console.log("Param...Exe");
+console.log("Program Execution Path............");
 console.log();
 
-// function invoke
+// Immediate function invokation
+(function() {
+  let message = "Hello";
+
+  console.log(`${message} I have been invoked immediately`); // Hello
+})();
+
+console.log("..........");
+
+// function invoke containing nested inner function
 let work = makeWorker();
 work();
 
-console.log();
-
+console.log("..............");
 let counter1 = makeCounter();
 let counter2 = makeCounter();
 
+// Lexical environment A
 console.log(counter1());
 console.log(counter1());
 console.log(counter1());
@@ -20,14 +29,15 @@ console.log(counter1());
 
 console.log();
 
+// Lexical environment B
 console.log(counter2());
 console.log(counter2());
 
 function makeWorker() {
-  let name = "Peter Eugene Mbanda";
+  let name = "Jamal Mansory"; // scope lock
 
   return function() {
-    console.log(name);
+    console.log(`${name} as closure::`); // closure obtaining variable from outer scope
   };
 }
 
