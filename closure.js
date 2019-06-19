@@ -33,6 +33,25 @@ console.log();
 console.log(counter2());
 console.log(counter2());
 
+console.log("...........");
+// Ways to create IIFE (Immediately invoked function expressions)
+
+(function() {
+  console.log("Parentheses around the function");
+})();
+
+(function() {
+  console.log("Parentheses around the whole thing");
+})();
+
+!(function() {
+  console.log("Bitwise NOT operator starts the expression");
+})();
+
++(function() {
+  console.log("Unary plus starts the expression");
+})();
+
 function makeWorker() {
   let name = "Jamal Mansory"; // scope lock
 
