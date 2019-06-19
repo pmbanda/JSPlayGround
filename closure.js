@@ -52,6 +52,38 @@ console.log("...........");
   console.log("Unary plus starts the expression");
 })();
 
+console.log("............");
+
+// Write function sum that works like this: sum(a)(b) = a+b.
+console.log(`Sum of the values is ${sum(12)(10)}`);
+console.log(`Sum of the values is ${sum(1)(2)}`);
+console.log(`Sum of the values is ${sum(5)(-1)}`);
+
+console.log();
+console.log();
+
+/* .. your code for inBetween and inArray */
+
+/*inBetween(a, b) – between a and b or equal to them (inclusively).
+inArray([...]) – in the given array.*/
+
+let arr = [1, 2, 3, 4, 5, 6, 7];
+
+console.log(`Filtered `, arr.filter(inBetween(3, 6)));
+console.log(`Filtered `, arr.filter(inArray([1, 2, 10])));
+
+function inBetween(a, b) {
+  return x => x >= a && x <= b;
+}
+function inArray(...arr) {
+  return x => x >= x[0] && x <= x[1];
+}
+
+function sum(a) {
+  return function(b) {
+    return a + b;
+  };
+}
 function makeWorker() {
   let name = "Jamal Mansory"; // scope lock
 
