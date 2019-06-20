@@ -21,4 +21,4 @@ let bar = new Function(
   "x",
   "for (let index = 1; index < x; index++) {console.log(index);}"
 );
-bar(20);
+bar(10);

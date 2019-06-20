@@ -1,4 +1,5 @@
 "use strict ";
+
 // Array of names
 let names = ["Jamal", "Rachael", "Sylvester", "Cory"];
 let seconds = 2000;
@@ -9,11 +10,14 @@ console.log(`.........`);
 let timeOutID = setTimeout(() => {
   let digit = Math.floor(Math.random() * names.length);
 
-  sayHi(names[digit]); // Invoke any name after 3000 ms
+  sayHi(names[digit], () => {
+    console.log("Im done bitches");
+  }); // Invoke any name after 3000 ms
 }, seconds);
 
-function sayHi(name = "Unknown") {
-  console.log(`Hello ${name()} how are you!`);
+function sayHi(name = "Unknown", callback) {
+  console.log(`Hello ${name} how are you!`);
+  callback();
   console.log();
 }
 
@@ -31,6 +35,7 @@ timeOutID = setInterval(() => {
 }, seconds);
 
 console.log();
+console.log("..........");
 
 // Recursive Call.......??????????????...................
 // let timerId = setTimeout(function tick() {
@@ -38,3 +43,8 @@ console.log();
 //   timerId = setTimeout(tick, 2000); // (*)
 // }, 2000);
 // Recursive Call.......??????????????...................
+
+// Invoked only after code complete
+setTimeout(() => console.log("World"), 0);
+
+console.log("Hello");
