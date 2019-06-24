@@ -98,3 +98,33 @@ function makeCounter() {
     return count++;
   };
 }
+
+function Counter() {
+  let count = 0;
+
+  this.up = function() {
+    return ++count;
+  };
+
+  this.down = function() {
+    return --count;
+  };
+}
+
+let counter = new Counter();
+
+console.log(counter.up()); // 1
+console.log(counter.up()); // 2
+console.log(counter.down()); // 1
+
+let phrase = "Hello";
+
+if (true) {
+  let user = "John";
+
+  function sayHi() {
+    alert(`${phrase}, ${user}`);
+  }
+}
+// Error due to the block code hence creation of a lexical environment away from global
+//sayHi();
