@@ -9,16 +9,19 @@ console.log(`Invoke new Function -> ${foo(10, 20)}`);
 let sayHi = new Function('console.log("::Hello String Param::")');
 sayHi(); // Hello
 
-function looper() {
-  for (let index = 0; index < 23; index++) {
-    console.log(index);
-  }
-}
 console.log();
 
-console.log("Call Looper....");
-let bar = new Function(
-  "x",
-  "for (let index = 1; index < x; index++) {console.log(index);}"
-);
-bar(10);
+console.log("New function manipulating the outer variable....");
+let x = 30;
+console.log(`x before in the outer ${x}`);
+
+function check() {
+  let bar = new Function("x", "for(let i = 0; i < x; i++) {console.log(i);}");
+  bar(10);
+}
+
+check();
+console.log(`x in the outer ${x}`);
+
+console.log("...............");
+console.log();
