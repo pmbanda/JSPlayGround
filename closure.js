@@ -70,13 +70,13 @@ inArray([...]) – in the given array.*/
 let arr = [1, 2, 3, 4, 5, 6, 7];
 
 console.log(`Filtered `, arr.filter(inBetween(3, 6)));
-console.log(`Filtered `, arr.filter(inArray([1, 2, 10])));
+console.log(`Filtered `, arr.filter(inArray([1, 2, 6])));
 
 function inBetween(a, b) {
   return x => x >= a && x <= b;
 }
-function inArray(...arr) {
-  return x => x >= x[0] && x <= x[1];
+function inArray(arr) {
+  return x => arr.includes(x);
 }
 
 function sum(a) {
@@ -128,3 +128,50 @@ if (true) {
 }
 // Error due to the block code hence creation of a lexical environment away from global
 //sayHi();
+
+console.log(".................");
+console.log();
+
+let users = [
+  { name: "John", age: 20, surname: "Johnson" },
+  { name: "Pete", age: 18, surname: "Peterson" },
+  { name: "Ann", age: 19, surname: "Hathaway" }
+];
+
+// So, instead of writing a function, just put byField(fieldName).
+// Write the function byField that can be used for that.
+
+console.log(`Sort by name..`);
+users.sort(byField("name"));
+console.log(users);
+console.log(`Sort by age..`);
+users.sort(byField("age"));
+console.log(users);
+
+function byField(fieldName) {
+  return (a, b) => (a[fieldName] > b[fieldName] ? 1 : -1);
+}
+
+console.log("...............");
+console.log();
+
+function makeArmy() {
+  let shooters = [];
+
+  let i = 0;
+
+  while (i < 10) {
+    let j = i; // Put i in the inner lexical environment
+    let shooter = () => j; // should show its number
+
+    shooters.push(shooter);
+    i++;
+  }
+
+  return shooters;
+}
+
+let army = makeArmy();
+
+console.log(`Shooter 0 `, army[0]()); // the shooter number 0 shows 10
+console.log(`Shooter 5 `, army[5]()); // and number 5 also outputs 10...
