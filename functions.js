@@ -2,84 +2,36 @@
 /// Program: Functions practice
 "use strict";
 
-// TODO: ? functions declarations and execution
-function showMessage() {
-  console.log(`Function init -> ${company}`);
-}
-
-function showMessage(from, text) {
-  from = "*" + from + "*"; // make "from" look nicer
-  text = text || `no text given`;
-
-  console.log(from + ": " + text);
-}
-
-function getUSer() {
-  // TODO: ? Same variable declared as the outside variable hides the outer
-  var userName = "Jamal Mansory";
-  console.log(`Hello (Function User) ${userName} welcome`);
-}
-
-function showMovie(age) {
-  if (!checkAge(age)) {
-    return;
-  }
-  console.log("Showing you the movie"); // (*)
-}
-
-function checkAge(age) {
-  return age > 18 ? true : false;
-}
-
-function getDefaultText() {
-  return `Text undeclared`;
-}
-
-function showPrimes(n) {
-  for (let i = 2; i < n; i++) {
-    if (!isPrime(i)) continue;
-
-    console.log(i); // a prime
-  }
-}
-
-function isPrime(n) {
-  for (let i = 2; i < n; i++) {
-    if (n % i == 0) return false;
-  }
-  return true;
-}
-
-let company = `Mansory::Pipeline`;
+let company = `Rouge Developer`;
 console.log(`Pre-function -> ${company}`);
-showMessage(); // ? variable invoke
-console.log(`Post-function -> ${company}`);
+console.log(`Post-function -> ${showMessage(company, "Jamal Mansory")}`);
 
 console.log();
 
 // TODO: ? Globale level variable declaration
 var userName = "John Wess";
 console.log(`Pre-user -> ${userName}`);
-getUSer(); // ? variable invoke
+console.log(`Mid-user -> ${getUser()}`);
 console.log(`Post-user -> ${userName}`);
-
 console.log();
 
 let from = "Ann";
-showMessage(from, "Hello"); // *Ann*: Hello
+// *Ann*: Hello
 // the value of "from" is the same, the function modified a local copy
-console.log(from); // Ann
+console.log(`${showMessage(from, "This is my message")}`); // Ann
 
 console.log();
 
 from = "Jamal Mansory";
 let text = null;
-showMessage(from, text);
+console.log(`${showMessage(from, text)}`);
 
-console.log(`22 years old!`);
-showMovie(22);
-console.log(`10 years old!`);
-showMovie(10);
+console.log();
+
+let age = 22;
+console.log(`Is age ${age} authorized:: ${showMovie(age)}`);
+age = 10;
+console.log(`Is age ${age} authorized:: ${showMovie(age)}`);
 
 console.log();
 
@@ -91,12 +43,56 @@ showPrimes(num);
 console.log();
 console.log();
 
+function showMessage(from, text) {
+  from = "*" + from + "*"; // make "from" look nicer
+  text = text || `no text given`;
+
+  return from + ": " + text;
+}
+
+function getUser() {
+  // TODO: ? Same variable declared as the outside variable hides the outer
+  let userName = "Jamal Mansory";
+  return `Hello ${userName.toUpperCase()} welcome`;
+}
+
+function showMovie(age) {
+  if (!checkAge(age)) {
+    return "Underage";
+  }
+
+  return "Showing you the movie"; // (*)
+}
+
+function checkAge(age) {
+  return age > 18 ? true : false;
+}
+
+function getDefaultText() {
+  return `Default Text!`;
+}
+
+function showPrimes(x) {
+  for (let i = 2; i < x; i++) {
+    if (!isPrime(i)) continue;
+
+    console.log(i); // a prime
+  }
+}
+
+function isPrime(n) {
+  for (let i = 2; i <= Math.sqrt(n); i++) {
+    if (n % i == 0) return false;
+  }
+  return true;
+}
 console.log("Return the minimum of two values....");
 // TODO: ? Write a function min(a,b) which returns the least of two numbers a and b.
 function min(x, y) {
   let min = x < y ? x : y;
+
   if (x === y) {
-    return `The numbers are both equal`;
+    return `The numbers are both equal x:${x} y:${y}`;
   }
   return `The minimum between ${x} and ${y} is ${min}`;
 }
@@ -117,10 +113,6 @@ function pow(x, n) {
   }
   return result;
 }
-
-console.log(pow(5, 3));
-console.log(pow(4, 3));
-console.log(pow(5, 4));
 
 // TODO: Make two variants of check age
 // function checkAge(age) {
